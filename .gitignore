@@ -1,0 +1,26 @@
+# Environnements virtuels Python
+venv/
+__pycache__/
+*.pyc
+
+# Node.js
+node_modules/
+dist/
+.angular/
+docs/MRE.md
+# IDE
+.vscode/
+.idea/
+
+# Environnement
+# .env
+*.log
+
+
+
+node_modules/
+
+frontend/dist/
+frontend/node_modules
+frontend/.vscode
+docs/MR.md

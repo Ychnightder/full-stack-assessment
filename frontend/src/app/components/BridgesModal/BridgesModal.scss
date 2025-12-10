@@ -1,0 +1,263 @@
+@import 'variables';
+@import 'reset';
+@import 'mixins';
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+
+  .modal {
+    background: white;
+    border-radius: 8px;
+    width: 890px;
+    height: 700px;
+    max-height: 750px;
+    overflow-y: auto;
+    position: relative;
+
+    .head {
+      background-color: #3647ea;
+      border-radius: 8px 8px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100px;
+
+      .container {
+        height: 50%;
+        display: flex;
+        align-items: center;
+        margin-left: 25px;
+        color: white;
+
+        .left {
+          height: 100%;
+          margin-right: 15px;
+          .logo {
+            @include flex-center;
+            width: 60px;
+            height: 60px;
+          }
+        }
+        .right {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          h2 {
+            margin: 0;
+            font-size: 24px;
+          }
+          p {
+            margin: 0;
+            font-size: 16px;
+          }
+        }
+      }
+      .close-btn {
+        font-size: 20px;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        margin-right: 30px;
+      }
+    }
+
+    .container-form {
+      width: 100%;
+      height: auto;
+      @include flex-center(column);
+      position: relative;
+
+      .form-bridge {
+        width: 90%;
+        height: auto;
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background: #dbeafe7a;
+        border: 2px solid #93c5fd;
+        padding: 20px;
+        border-radius: 8px;
+
+        h3 {
+          font-weight: 400;
+          font-size: 17px;
+          color: $color-darkBlue;
+        }
+
+        input,
+        select {
+          width: 100%;
+          height: 40px;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 14px;
+          outline: none;
+        }
+
+        label {
+          font-size: 14px;
+          color: $color-greyBlue;
+        }
+
+        .footer {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 25px;
+
+          .btn {
+            width: 25%;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            background: #cad5e2;
+            transition: all 0.3s ease;
+          }
+          .btn-submit {
+            width: 75%;
+            background: #3647ea;
+          }
+        }
+      }
+    }
+    .btn-add {
+      @include flex-center;
+      margin: 20px auto;
+      width: 90%;
+      height: 50px;
+      border: 1px dashed #3647ea;
+      border-radius: 8px;
+      background: transparent;
+      color: #3647ea;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      span {
+        display: flex;
+        align-items: center;
+      }
+      &:hover {
+        background-color: #dbeafe7a;
+      }
+    }
+  }
+}
+
+.bridge-list {
+  margin: 15px;
+  .title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: $color-greyBlue;
+  }
+
+  .container-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+
+    .item-list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin: 15px 0;
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .logo {
+          margin-left: 15px;
+          @include flex-center;
+          width: 40px;
+          height: 40px;
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+
+          .name {
+            font-size: 16px;
+            font-weight: 500;
+            color: $color-darkBlue;
+          }
+
+          .location {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: $color-greyBlue;
+            gap: 4px;
+          }
+        }
+      }
+
+      .right {
+        margin-right: 15px;
+
+        .btn-delete {
+          border: none;
+          color: white;
+          cursor: pointer;
+          margin-right: 15px;
+        }
+        .btn-edit {
+          border: none;
+          color: white;
+          cursor: pointer;
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+
+  .wrapper-btn {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    .btn-close {
+      width: 120px;
+      height: 40px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 15px;
+      background: $color-darkBlue;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      .btn-close:hover {
+        background: rgba(29, 53, 87, 0.73);
+      }
+    }
+  }
+}

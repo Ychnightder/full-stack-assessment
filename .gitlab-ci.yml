@@ -1,0 +1,41 @@
+stages:
+  - test
+
+variables:
+  POSTGRES_DB: test_db
+  POSTGRES_USER: test_user
+  POSTGRES_PASSWORD: test_pass
+  DB_HOST: postgres
+  DB_PORT: 5432
+  DB_NAME: test_db
+  DB_USER: test_user
+  DB_PASSWORD: test_pass
+
+services:
+  - name: postgis/postgis:16-3.5
+    alias: postgres
+
+test:
+  stage: test
+  image: python:3.13-slim
+  script:
+   # Installer GDAL avant Django
+    - apt-get update && apt-get install -y gdal-bin libgdal-dev postgresql-client
+    - pip install --upgrade pip
+    - pip install -r backend/requirements.txt
+    - until pg_isready -h $DB_HOST -p $DB_PORT; do echo "Waiting for postgres..."; sleep 2; done
+    # Appliquer les migrations
+    - python backend/manage.py migrate
+    # Importer les données CSV dans la base de test
+    - python ./scripts/import_csv_to_db_ci.py
+    - python ./scripts/verify_import_csv_to_db.py
+    # Lancer les tests Django
+    - python backend/manage.py test bridges
+
+frontend_test:
+  stage: test
+  image: node:20-slim
+  script:
+    - cd frontend
+    - npm install
+    - npm run test:unit

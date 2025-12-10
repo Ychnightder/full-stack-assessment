@@ -1,0 +1,21 @@
+@import 'variables';
+@import 'reset';
+@import 'mixins';
+
+.map-container {
+  height: 100vh;
+  #map {
+    height: 100%;
+  }
+  //   .custom-marker {
+  //   width: 35px;   // largeur du wrapper
+  //   height: 35px;  // hauteur du wrapper (cohérent avec iconSize)
+  //   background: #000;
+  // }
+  // .custom-marker img,
+  // .custom-marker svg {
+  //   width: 35px;   // largeur réelle du visuel
+  //   height: 35px;  // garder carré; mettre height:auto si besoin de ratio
+  //   display: block;
+  // }
+}

@@ -1,0 +1,117 @@
+<div class="modal-backdrop" *ngIf="isOpen()">
+  <div class="modal">
+    <div class="head">
+      <div class="container">
+        <div class="left">
+          <div class="logo">
+            <img src="assets/images/bridges/logo-bridge.svg" alt="" />
+          </div>
+        </div>
+
+        <div class="right">
+          <h2>Gestion des Ponts</h2>
+          <p>Ponts et ouvrages hydrauliques</p>
+        </div>
+      </div>
+
+      <button class="close-btn" (click)="close()">
+        <img src="assets/images/shared/close.svg" alt="" />
+      </button>
+    </div>
+
+    <div class="container-form">
+      <form class="form-bridge" [style.display]="formVisible ? 'flex' : 'none'">
+        <h3>{{ formAdd ? 'Ajouter un nouveau pont' : 'Modifier le pont' }}</h3>
+        <input type="text" name="id" hidden [(ngModel)]="formModel.bridge_id" />
+        <label for="name">
+          Nom du l'infrastructure *
+          <input
+            type="text"
+            id="name"
+            name="name"
+            [(ngModel)]="formModel.name"
+            placeholder="Ex: Pont Napoléon III"
+            required
+          />
+        </label>
+
+        <div class="location">
+          <label for="location">
+            Latitude *
+            <input
+              type="text"
+              id="location"
+              name="location"
+              [(ngModel)]="formModel.Latitude"
+              placeholder="43,695"
+              required
+            />
+          </label>
+          <label for="location">
+            Longitude *
+            <input
+              type="text"
+              id="location"
+              name="location"
+              [(ngModel)]="formModel.Longitude"
+              placeholder="7,265"
+              required
+            />
+          </label>
+        </div>
+
+        <div class="footer">
+          <button class="btn btn-submit" (click)="submitForm()">
+            {{ formAdd ? 'Ajouter ' : 'modifier' }}
+          </button>
+
+          <button class="btn btn-cancel" (click)="closeForm()">Annuler</button>
+        </div>
+      </form>
+
+      <button class="btn-add" (click)="openAddForm()">
+        <span>
+          <img src="assets/images/bridges/add.svg" alt="Add bridge" />
+        </span>
+        Ajouter un nouveau pont
+      </button>
+    </div>
+
+    <!-- Liste des ponts -->
+    <div class="bridge-list">
+      <p class="title">Infrastructures existantes ({{ bridges().length }})</p>
+      <div class="container-list">
+        <!-- <li *ngFor="let bridge of bridges()">{{ bridge.name }} - {{ bridge.location }}</li> -->
+
+        <div *ngFor="let bridge of bridges()" class="item-list">
+          <div class="left">
+            <div class="logo">
+              <img src="assets/images/bridges/logo-bridge-alternative.svg" alt="Bridge Icon" />
+            </div>
+            <div class="info">
+              <p class="name">{{ bridge.name }}</p>
+              <p class="location">
+                <span>
+                  <img src="assets/images/shared/pin-grey.svg" alt="Location Icon" />
+                </span>
+                {{ extractCoordinates(bridge.location) }}
+              </p>
+            </div>
+          </div>
+          <div class="right">
+            <button class="btn-edit" (click)="openEditForm(bridge)">
+              <img src="assets/images/bridges/edit.svg" alt="Edit Bridge" />
+            </button>
+            <button class="btn-delete" (click)="deleteBridge(bridge)">
+              <img src="assets/images/bridges/delete.svg" alt="Delete Bridge" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper-btn">
+        <button class="btn-close" (click)="close()">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Formulaire ajout -->

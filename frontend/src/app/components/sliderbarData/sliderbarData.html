@@ -1,0 +1,108 @@
+<div class="panel">
+  <div class="header">
+    <div class="base-info">
+      <div class="info">
+        <img class="icon" src="assets/images/sliderData/logo-data.svg" alt="goutte d'eau" />
+        <div class="titles">
+          <div class="name">{{ (stationCurrent()?.libelle_station?.split('[') || [''])[0] }}</div>
+          <div class="coords">
+            <img class="-pin" src="assets/images/shared/pin.svg" alt="pin icon" />
+            {{ stationCurrent()?.latitude_station }}, {{ stationCurrent()?.longitude_station }}
+          </div>
+        </div>
+      </div>
+      <div class="status">
+        <div
+          class="badges"
+          [class.is-active]="stationCurrent()?.en_service"
+          [class.is-inactive]="!stationCurrent()?.en_service"
+        >
+          <span class="dot-color"></span>
+          <span>
+            {{ stationCurrent()?.en_service ? 'Opérationnelle' : 'Hors service' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="close">
+      <button class="btn-close" (click)="clearStation()">
+        <img src="assets/images/shared/close.svg" alt="icon-close" />
+      </button>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="sub-title">
+      <img src="assets/images/sliderData/Cardiogram-grey.svg" alt="" />
+      <h3>Mesures en temps réel</h3>
+    </div>
+  </div>
+
+  <app-card [stationCode]="stationCode"></app-card>
+
+  <div class="legend">
+    <div class="sub-title">
+      <img src="assets/images/sliderData/stock.svg" alt="" />
+      <h3>Évolution cette semaine</h3>
+    </div>
+    <!-- " -->
+  </div>
+
+  <app-widget [stationCode]="stationCode"></app-widget>
+
+  <div class="info-station">
+    <div class="legend">
+      <div class="sub-title">
+        <img src="assets/images/sliderData/info.svg" alt="" />
+
+        <h3>Informations station</h3>
+      </div>
+    </div>
+
+    <div class="wrapper-info">
+      <div class="info">
+        <p class="libelle">Code Station</p>
+        <span class="data">{{ stationCurrent()?.code_station }}</span>
+      </div>
+      <div class="info">
+        <p class="libelle">Type</p>
+        <span
+          class="data type-badge"
+          [ngSwitch]="stationCurrent()?.type_station"
+          title="{{ stationCurrent()?.type_station }}"
+        >
+          <!-- codes Hubeau -->
+          <ng-container *ngSwitchCase="'STD'">Station hydrométrique</ng-container>
+          <ng-container *ngSwitchCase="'DEB'">Station débit</ng-container>
+          <ng-container *ngSwitchCase="'H'">Station hauteur</ng-container>
+
+          <!-- fallback: affiche la valeur brute -->
+          <ng-container *ngSwitchDefault
+            >{{
+              stationCurrent()?.type_station === null ? 'inconnue' : stationCurrent()?.type_station
+            }}
+          </ng-container>
+        </span>
+      </div>
+      <div class="info">
+        <p class="libelle">Cours d'Eau</p>
+        <span class="data">{{ stationCurrent()?.libelle_cours_eau }}</span>
+      </div>
+      <div class="info">
+        <p class="libelle">Commune</p>
+        <span class="data">{{ stationCurrent()?.libelle_commune }}</span>
+      </div>
+      <div class="info">
+        <p class="libelle">Mise en service</p>
+        <span class="data">
+          {{
+            stationCurrent()?.date_ouverture_station
+              ? (stationCurrent()?.date_ouverture_station | date: 'dd/MM/yyyy')
+              : 'inconnue'
+          }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

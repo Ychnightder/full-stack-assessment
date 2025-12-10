@@ -1,0 +1,18 @@
+<main class="main">
+  <app-sidebar class="sidebar" (checkedChange)="showOnlyActive.set($event)"></app-sidebar>
+
+  <app-map
+    class="map-container"
+    [showOnlyActive]="showOnlyActive()"
+    (stationCodeSelected)="onStationCode($event)"
+  >
+  </app-map>
+
+  <app-sliderbar-data
+    class="sliderbar-data"
+    *ngIf="selectedStationCode() && showSliderbar()"
+    [stationCode]="selectedStationCode()!"
+    (close)="onClosePanel()"
+  >
+  </app-sliderbar-data>
+</main>

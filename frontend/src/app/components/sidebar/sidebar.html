@@ -1,0 +1,35 @@
+<div class="sidebar">
+  <div class="logo">
+    <img src="assets/images/shared/logo.png" alt="logo hydro map" />
+  </div>
+
+  <div class="head">
+    <img src="assets/images/sideBar/filter.svg" alt="icon filtre" />
+    <p class="title">Flitre & Légende</p>
+  </div>
+  <!-- frontend/public/assets/images/sliderData -->
+  <div class="affichage">
+    <div class="sub-title"><h3>Affichage</h3></div>
+    <app-display-toggle
+      label="Stations non-opérationnelles"
+      labelNoData="Stations sans données"
+      (checkedChange)="onToggleChanged($event)"
+    >
+    </app-display-toggle>
+  </div>
+
+  <div class="legend">
+    <div class="sub-title"><h3>Légende</h3></div>
+    <app-legend [StatusStations]="StatusStations"></app-legend>
+  </div>
+
+  <div class="stat">
+    <div class="sub-title stat-title"><h3>Statistiques</h3></div>
+    <app-sidebar-statistics></app-sidebar-statistics>
+  </div>
+
+  <div class="btn-modal">
+    <button (click)="bridgesModal.open()" class="btn">Infrastructure</button>
+  </div>
+  <app-bridges-modal #bridgesModal></app-bridges-modal>
+</div>
