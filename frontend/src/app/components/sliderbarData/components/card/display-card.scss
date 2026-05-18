@@ -2,10 +2,8 @@
          - Layout vertical
          - Cartes uniformes avec variation pour non-operational
       */
-@import 'variables';
-@import 'reset';
-@import 'mixins';
-
+@use 'variables' as *;
+@use 'mixins' as *;
 .cards {
   gap: 20px;
   display: grid;

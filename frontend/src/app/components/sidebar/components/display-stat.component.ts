@@ -34,9 +34,8 @@ import { InfrastructureService } from '../../../services/infrasructure/infrastru
   `,
   styles: [
     `
-      @import 'variables';
-      @import 'reset';
-      @import 'mixins';
+   @use 'variables' as *;
+@use 'mixins' as *;
 
       .card-grid {
         display: grid;

@@ -61,9 +61,8 @@ import { CommonModule } from '@angular/common';
   `,
   styles: [
     `
-      @import 'variables';
-      @import 'reset';
-      @import 'mixins';
+@use 'variables' as *;
+@use 'mixins' as *;
 
       .legend-container {
         display: flex;
