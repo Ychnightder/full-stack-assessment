@@ -1,7 +1,5 @@
-@import 'variables';
-@import 'reset';
-@import 'mixins';
-
+@use 'variables' as *;
+@use 'mixins' as *;
 .modal-backdrop {
   position: fixed;
   top: 0;

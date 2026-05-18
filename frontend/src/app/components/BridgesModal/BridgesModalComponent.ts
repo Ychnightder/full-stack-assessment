@@ -37,7 +37,6 @@ export class BridgesModalComponent implements OnInit {
     this.bridges.set(list);
   }
 
-
   formVisible: boolean = false;
   formAdd: boolean = true;
   formModel: InfrastructureLL = {
@@ -67,6 +66,10 @@ export class BridgesModalComponent implements OnInit {
       Latitude: extractCoordinates(current.location).split(' ')[1],
       Longitude: extractCoordinates(current.location).split(' ')[0],
     };
+  }
+
+  extractCoordinates(point: string): string {
+    return extractCoordinates(point);
   }
 
   /* ---------- submit ---------- */
@@ -137,3 +140,5 @@ export class BridgesModalComponent implements OnInit {
     }
   }
 }
+
+
