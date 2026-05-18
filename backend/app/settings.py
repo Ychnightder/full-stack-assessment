@@ -85,6 +85,7 @@ import os
 
 DATABASES = {
     "default": {
+        # On passe du moteur .gis.db.backends.postgis au moteur classique :
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("DB_NAME"),
         "USER": os.getenv("DB_USER"),
